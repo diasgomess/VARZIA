@@ -58,6 +58,14 @@ MVP em fases:
 
 A API principal será em FastAPI, expondo endpoints REST para autenticação, times, jogadores, partidas e eventos. O frontend receberá atualizações em tempo real por WebSocket para alerts e mapa de calor.
 
+### Motor de recomendações (primeiro passo)
+
+Este repositório inclui um primeiro passo do motor de recomendações baseado em regras simples:
+- Janela temporal de 5 minutos para analisar métricas
+- Regra inicial: se ataques pelo lado esquerdo > 65%, gera `ai_insight` com severidade `medium`
+- Serviço/job para geração e armazenamento de insights
+- Publicação de alertas em canal WebSocket (`match:{match_id}:alerts`)
+
 ## Banco de dados (esboço)
 
 Tabelas principais:

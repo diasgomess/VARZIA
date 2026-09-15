@@ -168,3 +168,9 @@ def delete_player(player_id: int, db: Session = Depends(get_db)):
     db.delete(player)
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+from fastapi import FastAPI
+
+from app.api.routes.player_stats import router as player_stats_router
+
+app = FastAPI(title="VARZIA API")
+app.include_router(player_stats_router)

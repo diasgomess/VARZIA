@@ -58,10 +58,13 @@ MVP em fases:
 
 A API principal será em FastAPI, expondo endpoints REST para autenticação, times, jogadores, partidas e eventos. O frontend receberá atualizações em tempo real por WebSocket para alerts e mapa de calor.
 
-Endpoint MVP já disponível para estatísticas por jogador:
-- `POST /matches/{match_id}/player-stats/recalculate`
-- Payload: lista de `events` (`pass`, `shot`, `goal`, `tackle`, `distance`) e `player_positions`
-- Retorno: estatísticas agregadas por `match/player` com `passes`, `shots`, `goals`, `tackles`, `distance` e `rating`
+### Motor de recomendações (primeiro passo)
+
+Este repositório inclui um primeiro passo do motor de recomendações baseado em regras simples:
+- Janela temporal de 5 minutos para analisar métricas
+- Regra inicial: se ataques pelo lado esquerdo > 65%, gera `ai_insight` com severidade `medium`
+- Serviço/job para geração e armazenamento de insights
+- Publicação de alertas em canal WebSocket (`match:{match_id}:alerts`)
 
 ## Banco de dados (esboço)
 

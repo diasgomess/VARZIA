@@ -58,20 +58,10 @@ MVP em fases:
 
 A API principal será em FastAPI, expondo endpoints REST para autenticação, times, jogadores, partidas e eventos. O frontend receberá atualizações em tempo real por WebSocket para alerts e mapa de calor.
 
-Stub inicial implementado:
-- `POST /events`: recebe evento manual e faz broadcast para conexões WebSocket ativas.
-- `WS /ws/events`: canal para clientes receberem eventos em tempo real.
-
-Exemplo de payload:
-```json
-{
-  "type": "TACTICAL_ALERT",
-  "severity": "HIGH",
-  "timestamp": "00:34:21",
-  "title": "Exploração do corredor esquerdo",
-  "description": "A equipe adversária está criando superioridade numérica pelo lado esquerdo."
-}
-```
+Endpoint MVP já disponível para estatísticas por jogador:
+- `POST /matches/{match_id}/player-stats/recalculate`
+- Payload: lista de `events` (`pass`, `shot`, `goal`, `tackle`, `distance`) e `player_positions`
+- Retorno: estatísticas agregadas por `match/player` com `passes`, `shots`, `goals`, `tackles`, `distance` e `rating`
 
 ## Banco de dados (esboço)
 
